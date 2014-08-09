@@ -1,6 +1,9 @@
 title: Python's multiple versions' path in OSX
 date: 2014-08-09 12:41:06
-tags: Python osx PYHONPATH
+tags: 
+Python 
+osx 
+PYHONPATH
 category: Python
 ---
 
