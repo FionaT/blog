@@ -1,7 +1,9 @@
 title: OS X 下brew link 的时候的权限问题
 date: 2014-04-24 11:13:22
-tags: brew link
-category: osx
+tags: 
+- brew link
+- OSX
+category: OSX
 ---
 系统是OS X 10.9.2，osx在brew link的时候总是会遇到权限问题，
 会提示权限不足，但是brew又不能sudo，
