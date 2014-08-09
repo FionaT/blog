@@ -1,0 +1,23 @@
+#header_logo{
+	bottom: 70px;
+    height: 100px;
+    left: 12%;
+    position: relative;
+    width: 100px;
+}
+
+.my_icon{
+	position: relative;
+    margin-bottom: 5px;
+    right: 10px;
+    top: 25px;
+}
+
+.about p{
+ 	font-family: about_font;
+}
+
+.about{
+	position: relative;
+	left: 150px;
+}

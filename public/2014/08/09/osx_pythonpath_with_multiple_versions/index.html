@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="m3H51-xRIdo2CIYpzhIehAbZLq5-PGZQA63UKLvmAPI" />
+  
+  <title>Python&#39;s multiple versions&#39; path in OSX | Fiona&#39;s Blog</title>
+  <meta name="author" content="Fiona Tang">
+  
+  <meta name="description" content="description of my website">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Python&#39;s multiple versions&#39; path in OSX"/>
+  <meta property="og:site_name" content="Fiona&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  
+  <link href="/blog/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/blog/atom.xml" title="Fiona&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/blog/css/fiona_style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div id="head">
+  <h1><a href="/blog/">Fiona&#39;s Blog</a></h1>
+  <h2><a href="/blog/">A long way to go</a></h2>
+  <div id="header_logo">
+  	<img src="/blog/img/favicon.ico" width="80" height="80">
+  </div>
+</div>
+
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/blog/">Blog</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+      <li><a href="/blog/album">Album</a></li>
+    
+      <li><a href="/blog/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft">
+    	<div id="wrapper">
+    		<article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="blog/">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="my_icon">
+          <img src="/blog/img/favicon.ico" width="30" height="30">
+        </div>
+        <time datetime="2014-08-09T04:41:06.000Z"><a href="/blog/2014/08/09/osx_pythonpath_with_multiple_versions/">8月 9 2014</a></time>
+      
+      
+  
+    <h1 class="title">Python&#39;s multiple versions&#39; path in OSX</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>There are at lease 3 versions of Python in my computer, the defaule python2.7 provided by OSX is the first one, and the python2.7 and python3.3 installed by homebrew are another two versions. The result is that I am always confused by my multiply python versions, especially when I want to link them with my IDE or add some useful site-packages.</p>
+<a id="more"></a>
+
+<h2 id="1-_Find_out_PYTHONPATH">1. Find out PYTHONPATH</h2>
+<p>PYTHONPATH is an environment variable, much like PATH and it tells the terminal that which Python it should run when you type ‘python’ in terminal. And in OSX PYTHONPATH is saved in .profile file. </p>
+<p>There are 3 ways to find your python’s path:</p>
+<h3 id="1)_Use_vim_to_see_your_-profile_file">1)  Use vim to see your .profile file</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="constant">Fiona</span><span class="symbol">:~</span> <span class="constant">Fiona</span><span class="variable">$ </span>vim ~<span class="regexp">/.profile</span>
+</pre></td></tr></table></figure>
+
+<p>and you can see something similar as the following lines</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="keyword">export</span> PYTHONPATH=/usr/local/lib/python2.<span class="number">7</span>/site-packages:<span class="variable">$PYTHONPATH</span>
+
+PATH=<span class="string">"/Library/Frameworks/Python.framework/Versions/2.7/bin:<span class="variable">${PATH}</span>"</span>
+<span class="keyword">export</span> PATH
+</pre></td></tr></table></figure>
+
+<p>we can get that the python path is <code>/usr/local/lib/python2.7/site-packages</code></p>
+<h3 id="2)_Type_which_python_in_the_terminal">2)  Type which python in the terminal</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="constant">Fiona</span><span class="symbol">:~</span> <span class="constant">Fiona</span><span class="variable">$ </span>which python
+</pre></td></tr></table></figure>
+
+<p>and it will return </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>/Library/Frameworks/Python<span class="preprocessor">.framework</span>/Versions/<span class="number">2.7</span>/bin/python
+</pre></td></tr></table></figure>
+
+<p>which shows the path of the python unix execute file</p>
+<h3 id="3)_Run_the_following_code_in_python">3)  Run the following code in python</h3>
+<p>we can also figure out python’s path in the python IDLE by the following code.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>import <span class="built_in">os</span>
+try:
+    user_paths = <span class="built_in">os</span>.environ[<span class="string">'PYTHONPATH'</span>].split(<span class="built_in">os</span>.pathsep)
+except KeyError:
+    user_paths = []
+
+<span class="built_in">print</span> user_paths
+</pre></td></tr></table></figure>
+
+<p>and the it will probably print </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>/usr/<span class="built_in">local</span>/lib/python2<span class="number">.7</span>/site<span class="attribute">-packages</span>
+</pre></td></tr></table></figure>
+
+<h2 id="2-_Find_the_OSX_system’s_Python">2. Find the OSX system’s Python</h2>
+<p>From the above passage, we can see that one version of python is located in <code>/usr/local/lib/python2.7</code>, and I guess that the OSX system’s Python is probably in <code>usr/lib/</code>. So I cd into <code>/usr/lib/</code> and find Python2.5 Python2.6 and Python2.7 here. </p>
+<p>What is more, the Python2.5 Python2.6 and Python2.7 files here are all substitutes. Take Python2.7 for example, the Python2.7 in <code>/usr/lib/</code> points to<br><code>/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7</code>.</p>
+<p>So the Python (provided by OSX system)is indeed in<br><code>/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7</code><br>and its substitute is in <code>/usr/lib/</code>.</p>
+<p>On the other hand, the Python (installed by user) is in<br><code>/Library/Frameworks/Python.framework/Versions</code>.<br>I cd into the path I find Python2.7 and Python3.3 here.</p>
+<h2 id="3-_Find_out_different_versions’_Python’s_site-packages_folder">3. Find out different versions’ Python’s site-packages folder</h2>
+<p>Then I explore there folders and finally find out that the python(installed by user) ‘s site-packages folder locates in <code>Library/Python/2.7/site-packages</code>, and you can replace 2.7 with any another version number that u have alreay installed such as 2.6.</p>
+<p>On the other hand, the python (provided by OSX system) ‘s site-packages folder locates in<br><code>/usr/local/lib/python2.7/site-packages</code>.</p>
+<p>After figuring out these different versions Python’s site-package’s path, we can manage their libraries better. For example we can uninstall some libraries by deleteing their folders such as what we do in windows.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/blog/categories/Python/">Python</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/blog/tags/Python osx PYHONPATH/">Python osx PYHONPATH</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fionamood"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</section>
+
+    	</div>
+    </div>
+
+    
+    <aside id="sidebar" class="alignright">
+  
+<div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:fionat.github.io/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/categories/Algorithm/">Algorithm</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Hexo/">Hexo</a><small>3</small></li>
+  
+    <li><a href="/blog/categories/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/PyQt/">PyQt</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/goagentX/">goagentX</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/osx/">osx</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/blog/tags/Algorithm/" style="font-size: 10.00px;">Algorithm</a><a href="/blog/tags/Hexo/" style="font-size: 20.00px;">Hexo</a><a href="/blog/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/blog/tags/PyQt/" style="font-size: 15.00px;">PyQt</a><a href="/blog/tags/Python osx PYHONPATH/" style="font-size: 10.00px;">Python osx PYHONPATH</a><a href="/blog/tags/brew osx/" style="font-size: 10.00px;">brew osx</a><a href="/blog/tags/osx/" style="font-size: 10.00px;">osx</a>
+  </div>
+</div>
+
+</aside>
+    
+
+  	<div class="clearfix">
+  	</div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2014 Fiona Tang
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+  <canvas id="layer1" style="position: fixed; left: 0; top: 0; z-index: -2;"></canvas>
+  <canvas id="layer2" style="position: fixed; left: 0; top: 0; z-index: -1;"></canvas>
+  <script src="/blog/js/jquery-1.10.2.min.js"></script>
+  <script src='/blog/js/animation_v3_manyBalls_color3.js'></script>
+</body>
+</html>

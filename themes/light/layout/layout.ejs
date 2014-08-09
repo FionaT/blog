@@ -1,0 +1,26 @@
+<%- partial('_partial/head') %>
+
+<body>
+  <header id="header" class="inner"><%- partial('_partial/header') %></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft">
+    	<div id="wrapper">
+    		<%- body %>
+    	</div>
+    </div>
+
+    <% if (page.comments != false){ %>
+    <aside id="sidebar" class="alignright"><%- partial('_partial/sidebar') %></aside>
+    <% } %>
+
+  	<div class="clearfix">
+  	</div>
+  </div>
+  <footer id="footer" class="inner"><%- partial('_partial/footer') %></footer>
+  <%- partial('_partial/after_footer') %>
+  <canvas id="layer1" style="position: fixed; left: 0; top: 0; z-index: -2;"></canvas>
+  <canvas id="layer2" style="position: fixed; left: 0; top: 0; z-index: -1;"></canvas>
+  <script src="<%- config.root %>js/jquery-1.10.2.min.js"></script>
+  <script src='<%- config.root %>js/animation_v3_manyBalls_color3.js'></script>
+</body>
+</html>

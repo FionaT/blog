@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="m3H51-xRIdo2CIYpzhIehAbZLq5-PGZQA63UKLvmAPI" />
+  
+  <title>OS X 下brew link 的时候的权限问题 | Fiona&#39;s Blog</title>
+  <meta name="author" content="Fiona Tang">
+  
+  <meta name="description" content="description of my website">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="OS X 下brew link 的时候的权限问题"/>
+  <meta property="og:site_name" content="Fiona&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  
+  <link href="/blog/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/blog/atom.xml" title="Fiona&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/blog/css/fiona_style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div id="head">
+  <h1><a href="/blog/">Fiona&#39;s Blog</a></h1>
+  <h2><a href="/blog/">A long way to go</a></h2>
+  <div id="header_logo">
+  	<img src="/blog/img/favicon.ico" width="80" height="80">
+  </div>
+</div>
+
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/blog/">Blog</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+      <li><a href="/blog/album">Album</a></li>
+    
+      <li><a href="/blog/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft">
+    	<div id="wrapper">
+    		<article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="blog/">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="my_icon">
+          <img src="/blog/img/favicon.ico" width="30" height="30">
+        </div>
+        <time datetime="2014-04-24T03:13:22.000Z"><a href="/blog/2014/04/24/brewLink/">4月 24 2014</a></time>
+      
+      
+  
+    <h1 class="title">OS X 下brew link 的时候的权限问题</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>系统是OS X 10.9.2，osx在brew link的时候总是会遇到权限问题，<br>会提示权限不足，但是brew又不能sudo，<br>今天安装ffmpeg又遇到了这个问题，<br>在网上找到了解决方法</p>
+<a id="more"></a>
+
+<p>今天想要用github上的一个图形处理的开源库<br>所以需要安装opencv，但是卡在</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>brew <span class="keyword">install</span> ffmpeg
+</pre></td></tr></table></figure>
+
+<p>这一步，因为总是提示需要我</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>brew <span class="keyword">link</span> yasm
+</pre></td></tr></table></figure>
+
+<p>但是执行brew link yasm的时候又会提示</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>Error: Could <span class="keyword">not</span> symlink <span class="type">file</span>: /xxxxx <span class="keyword">is</span> <span class="keyword">not</span> writable. You should change <span class="keyword">its</span> permissions.
+</pre></td></tr></table></figure>
+
+<p>brew遇到permission的问题sudo是不可以的，因为brew不可以和sudo一起用</p>
+<p>后来在<a href="http://superuser.com/questions/435442/symlink-error-when-installing-mysql-via-homebrew" target="_blank">http://superuser.com/questions/435442/symlink-error-when-installing-mysql-via-homebrew</a><br>找到solution，就是在terminal输入</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>sudo chown -<span class="constant">R</span> <span class="variable">$(</span>whoami) /usr/local/<span class="keyword">include</span>
+</pre></td></tr></table></figure>
+
+<p>然后再brew link即可</p>
+<p>好像不仅仅是yasm，其他依赖在brew link出现问题的时候都可以用这一条命令来解决</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/blog/categories/osx/">osx</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/blog/tags/brew osx/">brew osx</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"fionamood"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</section>
+
+    	</div>
+    </div>
+
+    
+    <aside id="sidebar" class="alignright">
+  
+<div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:fionat.github.io/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/categories/Algorithm/">Algorithm</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/Hexo/">Hexo</a><small>3</small></li>
+  
+    <li><a href="/blog/categories/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/PyQt/">PyQt</a><small>2</small></li>
+  
+    <li><a href="/blog/categories/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/goagentX/">goagentX</a><small>1</small></li>
+  
+    <li><a href="/blog/categories/osx/">osx</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/blog/tags/Algorithm/" style="font-size: 10.00px;">Algorithm</a><a href="/blog/tags/Hexo/" style="font-size: 20.00px;">Hexo</a><a href="/blog/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/blog/tags/PyQt/" style="font-size: 15.00px;">PyQt</a><a href="/blog/tags/Python osx PYHONPATH/" style="font-size: 10.00px;">Python osx PYHONPATH</a><a href="/blog/tags/brew osx/" style="font-size: 10.00px;">brew osx</a><a href="/blog/tags/osx/" style="font-size: 10.00px;">osx</a>
+  </div>
+</div>
+
+</aside>
+    
+
+  	<div class="clearfix">
+  	</div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2014 Fiona Tang
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+  <canvas id="layer1" style="position: fixed; left: 0; top: 0; z-index: -2;"></canvas>
+  <canvas id="layer2" style="position: fixed; left: 0; top: 0; z-index: -1;"></canvas>
+  <script src="/blog/js/jquery-1.10.2.min.js"></script>
+  <script src='/blog/js/animation_v3_manyBalls_color3.js'></script>
+</body>
+</html>
