@@ -145,6 +145,22 @@ a:hover {
   left: 25%;
   width: 50%;
 }
+#header h1 a {
+  color: #fff;
+  opacity: 0.9;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: alpha(opacity=90);
+  text-shadow: 1px 1px 4px #fff;
+  text-decoration: none;
+}
+#header h2 a {
+  color: #fff;
+  opacity: 0.9;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: alpha(opacity=90);
+  text-shadow: 1px 1px 4px #fff;
+  text-decoration: none;
+}
 #header #main-nav {
   position: relative;
   left: 24%;
