@@ -538,9 +538,11 @@ article footer .addthis iframe {
   margin-bottom: 15px;
 }
 #pagination a {
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
   display: block;
-  padding: 5px 10px;
-  background: #ddd;
+  padding: 7px 30px;
+  background: #fff;
   color: #999;
   font-family: "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
   text-shadow: 0 0 1px #fff;
