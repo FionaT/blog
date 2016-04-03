@@ -7,6 +7,7 @@ categories: false
 
 ![Fiona](http://i.minus.com/ibiYh9E1gobS2H.png)
 
+NYU
 中大(sysu)大四软院实验室师姐
 喜欢Python和JS
 喜欢HIMYM
