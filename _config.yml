@@ -84,3 +84,4 @@ deploy:
   #branch: master
   branch: gh-pages
 
+plugins: - hexo-generator-sitemap
