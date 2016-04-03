@@ -11,6 +11,7 @@ categories: false
 喜欢Python和JS
 喜欢HIMYM TBBT 
 喜欢逛街
+Testing function
 
 Contact
 Weibo: [http://weibo.com/fionakaki](http://weibo.com/fionakaki)
