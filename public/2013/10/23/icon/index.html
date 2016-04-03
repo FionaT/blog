@@ -75,7 +75,7 @@
         <div class="my_icon">
           <img src="/blog/img/favicon.ico" width="30" height="30">
         </div>
-        <time datetime="2013-10-23T07:43:03.000Z"><a href="/blog/2013/10/23/icon/">10月 23 2013</a></time>
+        <time datetime="2013-10-23T19:43:03.000Z"><a href="/blog/2013/10/23/icon/">Oct 23 2013</a></time>
       
       
   
@@ -86,79 +86,24 @@
     <div class="entry">
       
         <p>下面我想介绍修改hexo中一些icon细节的方法<br><strong>第一种是修改每篇blog文章标题左边的icon</strong><br><strong>第二种是增加blog的网页icon，也就是那个显示浏览器标签页上的icon</strong></p>
-<h2 id="下面先说第一种"><strong>下面先说第一种</strong></h2>
-<p>刚开始的时候看左边那个蓝色的页面icon觉得不是很喜欢，而且太多人一样了<br>所以就想改掉<br><a id="more"></a><br><img src="http://i.minus.com/ikslq8Y8jObhu.png" alt="原来的样子"></p>
+<h2 id="下面先说第一种"><a href="#下面先说第一种" class="headerlink" title="下面先说第一种"></a><strong>下面先说第一种</strong></h2><p>刚开始的时候看左边那个蓝色的页面icon觉得不是很喜欢，而且太多人一样了<br>所以就想改掉<br><a id="more"></a><br><img src="http://i.minus.com/ikslq8Y8jObhu.png" alt="原来的样子"></p>
 <p>方法和过程很简单</p>
 <p>先进入theme－&gt;light-&gt;layout-&gt;_partial文件夹<br>打开article.ejs文件<br>看到第7行开始的</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>&lt;% <span class="keyword">if</span> (<span class="keyword">item</span>.layout != <span class="string">'page'</span>){ %&gt;
-	&lt;<span class="operator">div</span> class=<span class="string">'icon'</span>&gt;
-    &lt;/<span class="operator">div</span>&gt;
-</pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (item.layout != &apos;page&apos;)&#123; %&gt;</span><br><span class="line">	&lt;div class=&apos;icon&apos;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p>修改成以下代码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="vbscript">&lt;% <span class="keyword">if</span> (item.layout != <span class="comment">'page'){ %&gt;</span></span>
-        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"myicon"</span>&gt;</span>
-          <span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"&lt;%- config.root %&gt;img/myicon.png"</span> <span class="attribute">width</span>=<span class="value">"30"</span> <span class="attribute">height</span>=<span class="value">"30"</span>&gt;</span>
-        <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (item.layout != &apos;page&apos;)&#123; %&gt;</span><br><span class="line">        &lt;div class=&quot;myicon&quot;&gt;</span><br><span class="line">          &lt;img src=&quot;&lt;%- config.root %&gt;img/myicon.png&quot; width=&quot;30&quot; height=&quot;30&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p>然后在把myicon.png文件放到theme－&gt;light-&gt;source文件目录下新建一个img文件夹<br>把你的icon图片myicon.png放到这个img文件夹内。当然别的文件格式也完全没有问题。</p>
 <p><img src="http://i.minus.com/iblUOhlaiS9GK5.png" alt="路径"></p>
 <p>这时的效果如图所示</p>
 <p><img src="http://i.minus.com/ibr4nWCLS2K4hO.png" alt="效果"></p>
-<p>因为我发现这个icon的位置和原来不同了所以就想做一些css上面的调整<br>于是我在theme－&gt;light-&gt;source－&gt;css的文件夹内新建了一个css文件，命名为private_style.css<br>写入以下内容</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre><span class="class">.myicon</span><span class="rules">{
-	<span class="rule"><span class="attribute">position</span>:<span class="value">  relative</span></span>;
-	<span class="rule"><span class="attribute">right</span>:<span class="value"> <span class="number">40</span>px</span></span>;
-	<span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">40</span>px</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
-
-<p>然后在theme－&gt;light-&gt;layout-&gt;_partial文件夹内的head.ejs文件打开<br>在最末尾的&lt;%- partial(‘google_analytics’) %&gt;这一句话前面加上</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre> &lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"&lt;%- config.root %&gt;css/private_style.css"</span> media=<span class="string">"screen"</span> <span class="keyword">type</span>=<span class="string">"text/css"</span>&gt;
-</pre></td></tr></table></figure>
-
+<p>因为我发现这个icon的位置和原来不同了所以就想做一些css上面的调整<br>于是我在theme－&gt;light-&gt;source－&gt;css的文件夹内新建了一个css文件，命名为private_style.css<br>写入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.myicon&#123;</span><br><span class="line">	position:  relative;</span><br><span class="line">	right: 40px;</span><br><span class="line">	top: 40px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在theme－&gt;light-&gt;layout-&gt;_partial文件夹内的head.ejs文件打开<br>在最末尾的&lt;%- partial(‘google_analytics’) %&gt;这一句话前面加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- config.root %&gt;css/private_style.css&quot; media=&quot;screen&quot; type=&quot;text/css&quot;&gt;</span><br></pre></td></tr></table></figure></p>
 <p>结果如下</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre>  <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"alternate"</span> <span class="attribute">href</span>=<span class="value">"&lt;% if (theme.rss){ %&gt;&lt;%- theme.rss %&gt;&lt;% } else { %&gt;&lt;%- config.root %&gt;atom.xml&lt;% } %&gt;"</span> <span class="attribute">title</span>=<span class="value">"&lt;%= config.title %&gt;"</span> <span class="attribute">type</span>=<span class="value">"application/atom+xml"</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"&lt;%- config.root %&gt;css/style.css"</span> <span class="attribute">media</span>=<span class="value">"screen"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"&lt;%- config.root %&gt;css/private_style.css"</span> <span class="attribute">media</span>=<span class="value">"screen"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span>
-  <span class="comment">&lt;!--[if lt IE 9]&gt;&lt;script src="//html5shiv.googlecode.com/svn/trunk/html5.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;</span>
-  <span class="vbscript">&lt;%- partial(<span class="comment">'google_analytics') %&gt;</span></span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-</pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &lt;link rel=&quot;alternate&quot; href=&quot;&lt;% if (theme.rss)&#123; %&gt;&lt;%- theme.rss %&gt;&lt;% &#125; else &#123; %&gt;&lt;%- config.root %&gt;atom.xml&lt;% &#125; %&gt;&quot; title=&quot;&lt;%= config.title %&gt;&quot; type=&quot;application/atom+xml&quot;&gt;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- config.root %&gt;css/style.css&quot; media=&quot;screen&quot; type=&quot;text/css&quot;&gt;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- config.root %&gt;css/private_style.css&quot; media=&quot;screen&quot; type=&quot;text/css&quot;&gt;</span><br><span class="line">  &lt;!--[if lt IE 9]&gt;&lt;script src=&quot;//html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;&lt;![endif]--&gt;</span><br><span class="line">  &lt;%- partial(&apos;google_analytics&apos;) %&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
 <p>然后再次generate后打开server的效果如下</p>
 <p><img src="http://i.minus.com/imvh5kkGjn1EJ.png" alt="效果"></p>
-<h2 id="第二种添加网页icon"><strong>第二种添加网页icon</strong></h2>
-<p>在themes－&gt;light－&gt;layout－&gt;_partial文件夹里面<br>打开head.ejs文件<br>把</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">link</span> <span class="attribute">href</span>=<span class="value">"&lt;%- config.root %&gt;favicon.png"</span> <span class="attribute">rel</span>=<span class="value">"icon"</span>&gt;</span>
-</pre></td></tr></table></figure>
-
-<p>修改成</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>&lt;link href=<span class="string">"&lt;%- config.root %&gt;img/myicon.ico"</span> rel=<span class="string">"icon"</span> <span class="keyword">type</span>=<span class="string">"image/x-ico"</span>&gt;
-</pre></td></tr></table></figure>
-
+<h2 id="第二种添加网页icon"><a href="#第二种添加网页icon" class="headerlink" title="第二种添加网页icon"></a><strong>第二种添加网页icon</strong></h2><p>在themes－&gt;light－&gt;layout－&gt;_partial文件夹里面<br>打开head.ejs文件<br>把<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;&lt;%- config.root %&gt;favicon.png&quot; rel=&quot;icon&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>修改成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;&lt;%- config.root %&gt;img/myicon.ico&quot; rel=&quot;icon&quot; type=&quot;image/x-ico&quot;&gt;</span><br></pre></td></tr></table></figure></p>
 <p>将myicon.ico图标文件放在theme－&gt;light-&gt;source-&gt;img文件夹里即可</p>
 
       
@@ -235,6 +180,8 @@ var duoshuoQuery = {short_name:"fionamood"};
   
     <li><a href="/blog/categories/goagentX/">goagentX</a><small>1</small></li>
   
+    <li><a href="/blog/categories/hexo/">hexo</a><small>0</small></li>
+  
   </ul>
 </div>
 
@@ -243,7 +190,7 @@ var duoshuoQuery = {short_name:"fionamood"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/blog/tags/Algorithm/" style="font-size: 10.00px;">Algorithm</a><a href="/blog/tags/Hexo/" style="font-size: 20.00px;">Hexo</a><a href="/blog/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/blog/tags/OSX/" style="font-size: 15.00px;">OSX</a><a href="/blog/tags/PYHONPATH/" style="font-size: 10.00px;">PYHONPATH</a><a href="/blog/tags/PyQt/" style="font-size: 15.00px;">PyQt</a><a href="/blog/tags/Python/" style="font-size: 10.00px;">Python</a><a href="/blog/tags/brew link/" style="font-size: 10.00px;">brew link</a><a href="/blog/tags/site-packages/" style="font-size: 10.00px;">site-packages</a>
+    <a href="/blog/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/blog/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/blog/tags/Java/" style="font-size: 10px;">Java</a> <a href="/blog/tags/OSX/" style="font-size: 15px;">OSX</a> <a href="/blog/tags/PYHONPATH/" style="font-size: 10px;">PYHONPATH</a> <a href="/blog/tags/PyQt/" style="font-size: 15px;">PyQt</a> <a href="/blog/tags/Python/" style="font-size: 10px;">Python</a> <a href="/blog/tags/brew-link/" style="font-size: 10px;">brew link</a> <a href="/blog/tags/site-packages/" style="font-size: 10px;">site-packages</a>
   </div>
 </div>
 
@@ -255,7 +202,7 @@ var duoshuoQuery = {short_name:"fionamood"};
   </div>
   <footer id="footer" class="inner"><div>
   
-  &copy; 2014 Fiona Tang
+  &copy; 2016 Fiona Tang
   
 </div>
 <div class="clearfix"></div></footer>
