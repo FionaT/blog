@@ -9,9 +9,8 @@ categories: false
 
 中大(sysu)大四软院实验室师姐
 喜欢Python和JS
-喜欢HIMYM TBBT 
+喜欢HIMYM
 喜欢逛街
-Testing function
 
 Contact
 Weibo: [http://weibo.com/fionakaki](http://weibo.com/fionakaki)
