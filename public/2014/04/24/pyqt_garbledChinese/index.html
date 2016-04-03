@@ -75,7 +75,7 @@
         <div class="my_icon">
           <img src="/blog/img/favicon.ico" width="30" height="30">
         </div>
-        <time datetime="2014-04-24T02:14:06.000Z"><a href="/blog/2014/04/24/pyqt_garbledChinese/">4月 24 2014</a></time>
+        <time datetime="2014-04-24T14:14:06.000Z"><a href="/blog/2014/04/24/pyqt_garbledChinese/">Apr 24 2014</a></time>
       
       
   
@@ -87,24 +87,11 @@
       
         <p>在Linux下写一个GUI程序的时候使用PyQt4，<br>然后在显示中文的时候出现了乱码的问题，<br>即使在文件头加了#coding:utf-8也没有用，<br>其实解决方法十分简单。</p>
 <a id="more"></a>
-
-<h2 id="中文乱码解决">中文乱码解决</h2>
-<p>比如说是一个设置窗口title的函数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="keyword">self</span>.setWindowTitle(<span class="string">"我的窗口小标题"</span>)
-</pre></td></tr></table></figure>
-
-<p>这样写时会出现中文乱码<br>网上搜索答案的时候说是编码格式不兼容<br>在py文件最前面加上</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="id">#coding</span><span class="pseudo">:utf-8</span>
-</pre></td></tr></table></figure>
-
+<p>##中文乱码解决<br>比如说是一个设置窗口title的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.setWindowTitle(&quot;我的窗口小标题&quot;)</span><br></pre></td></tr></table></figure>
+<p>这样写时会出现中文乱码<br>网上搜索答案的时候说是编码格式不兼容<br>在py文件最前面加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br></pre></td></tr></table></figure></p>
 <p>据说就可以解决</p>
-<p>但是在我这里失灵了<br>后来我发现只要用QtCore.QString再去包装一下中文字符就可以<br>像这样写就没有问题了，注意那个小小的u噢</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>self.setWindowTitle(QtCore.QString(<span class="string">u"我的窗口小标题"</span>))
-</pre></td></tr></table></figure>
-
+<p>但是在我这里失灵了<br>后来我发现只要用QtCore.QString再去包装一下中文字符就可以<br>像这样写就没有问题了，注意那个小小的u噢<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.setWindowTitle(QtCore.QString(u&quot;我的窗口小标题&quot;))</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -180,6 +167,8 @@ var duoshuoQuery = {short_name:"fionamood"};
   
     <li><a href="/blog/categories/goagentX/">goagentX</a><small>1</small></li>
   
+    <li><a href="/blog/categories/hexo/">hexo</a><small>0</small></li>
+  
   </ul>
 </div>
 
@@ -188,7 +177,7 @@ var duoshuoQuery = {short_name:"fionamood"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/blog/tags/Algorithm/" style="font-size: 10.00px;">Algorithm</a><a href="/blog/tags/Hexo/" style="font-size: 20.00px;">Hexo</a><a href="/blog/tags/Java/" style="font-size: 10.00px;">Java</a><a href="/blog/tags/OSX/" style="font-size: 15.00px;">OSX</a><a href="/blog/tags/PYHONPATH/" style="font-size: 10.00px;">PYHONPATH</a><a href="/blog/tags/PyQt/" style="font-size: 15.00px;">PyQt</a><a href="/blog/tags/Python/" style="font-size: 10.00px;">Python</a><a href="/blog/tags/brew link/" style="font-size: 10.00px;">brew link</a><a href="/blog/tags/site-packages/" style="font-size: 10.00px;">site-packages</a>
+    <a href="/blog/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/blog/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/blog/tags/Java/" style="font-size: 10px;">Java</a> <a href="/blog/tags/OSX/" style="font-size: 15px;">OSX</a> <a href="/blog/tags/PYHONPATH/" style="font-size: 10px;">PYHONPATH</a> <a href="/blog/tags/PyQt/" style="font-size: 15px;">PyQt</a> <a href="/blog/tags/Python/" style="font-size: 10px;">Python</a> <a href="/blog/tags/brew-link/" style="font-size: 10px;">brew link</a> <a href="/blog/tags/site-packages/" style="font-size: 10px;">site-packages</a>
   </div>
 </div>
 
@@ -200,7 +189,7 @@ var duoshuoQuery = {short_name:"fionamood"};
   </div>
   <footer id="footer" class="inner"><div>
   
-  &copy; 2014 Fiona Tang
+  &copy; 2016 Fiona Tang
   
 </div>
 <div class="clearfix"></div></footer>
